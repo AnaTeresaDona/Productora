@@ -21,6 +21,14 @@
     <%= form.select :gender, Group.genders.keys %>
   </div>
 
+  <div class="field">
+  <%= form.fields_for :crews do |crew_form|%>
+    <%= crew_form.label :name, 'Integrante' %>
+    <%= crew_form.text_field :name %>
+    <%end%>
+  </div>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
