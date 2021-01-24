@@ -1,0 +1,74 @@
+class CrewsController < ApplicationController
+  before_action :set_crew, only: %i[ show edit update destroy ]
+
+  # GET /crews or /crews.json
+  def index
+    @crews = Crew.all
+  end
+
+  # GET /crews/1 or /crews/1.json
+  def show
+  end
+
+  # GET /crews/new
+  def new
+    @crews = Crew.all
+    @crew = Crew.new
+    @groups = Group.all
+  end
+
+  # GET /crews/1/edit
+  def edit
+    @groups = Group.all 
+  end
+
+  # POST /crews or /crews.json
+  def create
+    @groups = Group.all
+    @crews = Crew.all 
+    @crew = Crew.new(crew_params)
+
+    respond_to do |format|
+      if @crew.save
+        format.html { redirect_to @crew, notice: "Crew was successfully created." }
+        format.json { render :show, status: :created, location: @crew }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @crew.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /crews/1 or /crews/1.json
+  def update
+    respond_to do |format|
+      if @crew.update(crew_params)
+        format.html { redirect_to @crew, notice: "Crew was successfully updated." }
+        format.json { render :show, status: :ok, location: @crew }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @crew.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /crews/1 or /crews/1.json
+  def destroy
+    @crew.destroy
+    respond_to do |format|
+      format.html { redirect_to crews_url, notice: "Crew was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_crew
+      @crew = Crew.find(params[:id])
+    end
+
+    # Only allow a list of trusted parameters through.
+    def crew_params
+      params.require(:crew).permit(:name, :group_id)
+    end
+end

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Place:</strong>
+  <%= @concert.place %>
+</p>
+
+<p>
+  <strong>Participants:</strong>
+  <%= @concert.participants %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @concert.date %>
+</p>
+
+<p>
+  <strong>Duración:</strong>
+  <%= @concert.duration %>
+</p>
+
+<p>
+  <strong>Nombre del grupo:</strong>
+  <%= @concert.group.name %>
+</p>
+
+<p>
+  <strong>Id del grupo:</strong>
+  <%= @concert.group_id %>
+</p>
+
+<%= link_to 'Editar', edit_concert_path(@concert) %> |
+<%= link_to 'Volver', concerts_path %>

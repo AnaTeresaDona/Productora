@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre</strong>
+  <%= @crew.name %>
+</p>
+
+<p>
+  <strong>Nombre del grupo:</strong>
+  <%= @crew.group.name %>
+</p>
+
+<p>
+  <strong>Id del grupo:</strong>
+  <%= @crew.group_id %>
+</p>
+
+<%= link_to 'Editar', edit_crew_path(@crew) %> |
+<%= link_to 'Volver', crews_path %>
