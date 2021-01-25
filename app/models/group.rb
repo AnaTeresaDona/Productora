@@ -8,7 +8,7 @@ class Group < ApplicationRecord
     enum gender:[:male, :female, :band]
 
     def qconcerts
-        self.concerts.count
+        concerts.count
     end
 
     def to_s
@@ -20,41 +20,41 @@ class Group < ApplicationRecord
     end
 
     def qparticipants
-        self.concerts.pluck(:participants).sum
+        concerts.pluck(:participants).sum
     end
 
     def qdebut
-        if self.concerts.count > 0
-            self.concerts.order(date: :asc).first.date
+        if concerts.count > 0
+            concerts.order(date: :asc).first.date
         else
             "No debut yet"
         end
     end
 
     def qmonth
-        if self.concerts.count > 0
+        if concerts.count > 0
             # g = self.concerts.where('extract(year from date) = ?', Time.now.year)
             # g.where('extract(month from date) = ?', Time.now.month).count
-            self.concerts.where('extract(year from date) = ?', Time.now.year).where('extract(month from date) = ?', Time.now.month).count 
+            concerts.where('extract(year from date) = ?', Time.now.year).where('extract(month from date) = ?', Time.now.month).count 
         else
             return 0
         end
     end
 
     def last_concert
-        if self.concerts.count > 0
-            self.concerts.order(date: :asc).last.date
+        if concerts.count > 0
+            concerts.order(date: :asc).last.date
         else
             "No debut yet"
         end
     end
 
     def qmaxparticipants
-        self.concerts.pluck(:participants).max
+        concerts.pluck(:participants).max
     end
 
     def qmaxduration
-        self.concerts.pluck(:duration).max
+        concerts.pluck(:duration).max
     end
 
 end
